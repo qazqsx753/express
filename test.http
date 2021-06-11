@@ -1,0 +1,25 @@
+@url=http://localhost:5050/admin
+@json=Content-Type: application/json
+
+
+###
+get {{url}} HTTP/1.1
+
+###
+POST {{url}}/users HTTP/1.1
+{{json}}
+
+{
+  "username":"qazqsx753",
+  "phone":"222",
+  "password":"123"
+}
+
+###
+POST {{url}}/login HTTP/1.1
+{{json}}
+
+{
+  "username":"qazqsx753",
+  "password":"123"
+}
