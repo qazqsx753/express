@@ -1,4 +1,5 @@
 module.exports = {
   dbUrl: "mongodb://localhost:27017/xby-manager",
-  secret: "cja"
+  secret: "cja",
+  jwtSecret: "luolechenjinao"
 }
