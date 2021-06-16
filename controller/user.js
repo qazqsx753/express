@@ -1,3 +1,4 @@
+
 const {User} = require("../model")
 const {jwtSecret} = require("../config")
 const jwt = require("../utils/jwt")
@@ -35,6 +36,21 @@ exports.login = async (req,res,next)=>{
         token,
         user:user
       }
+    })
+  }catch(err){
+    next(err)
+  }
+}
+
+// 获取用户信息
+
+exports.getuser = async (req,res,next)=>{
+  try{
+    console.log(req.headers.authorization)
+    res.status(200).json({
+      code:0,
+      msg:"请求成功",
+      data:{}
     })
   }catch(err){
     next(err)

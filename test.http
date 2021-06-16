@@ -1,6 +1,6 @@
 @url=http://localhost:5050/admin
 @json=Content-Type: application/json
-@token=Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGMzNjllYzI5OTc2MWIxN2FmYzdmY2EiLCJpYXQiOjE2MjM0Mjc0Mjh9.dloikPxG9ADQX_OPUrLc6LQMpejGh1rNV_vBuNIKtP8xxx
+@token=Authorization: Bearea eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGMzNjllYzI5OTc2MWIxN2FmYzdmY2EiLCJpYXQiOjE2MjM0Mjc0Mjh9.dloikPxG9ADQX_OPUrLc6LQMpejGh1rNV_vBuNIKtP8xxx
 
 ###
 get {{url}} HTTP/1.1
@@ -23,3 +23,8 @@ POST {{url}}/login HTTP/1.1
   "username":"qazqsx753",
   "password":"123"
 }
+
+###
+get {{url}}/users HTTP/1.1
+{{json}}
+{{token}}
