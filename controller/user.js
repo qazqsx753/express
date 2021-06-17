@@ -28,7 +28,7 @@ exports.login = async (req,res,next)=>{
     user = user.toJSON()
     const token = await jwt.sign({
       userId:_id
-    },jwtSecret)
+    },jwtSecret,{ expiresIn:30})
     res.status(200).json({
       code:0,
       msg:"登录成功",
@@ -46,11 +46,10 @@ exports.login = async (req,res,next)=>{
 
 exports.getuser = async (req,res,next)=>{
   try{
-    console.log(req.headers.authorization)
     res.status(200).json({
       code:0,
       msg:"请求成功",
-      data:{}
+      data:req.user
     })
   }catch(err){
     next(err)
