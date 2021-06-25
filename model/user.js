@@ -1,6 +1,7 @@
-const mongoose = require("mongoose")
-const baseModel = require("./base.model")
-const md5 = require("../utils/md5")
+const mongoose = require("mongoose");
+const baseModel = require("./base.model");
+const md5 = require("../utils/md5");
+const Schema = mongoose.Schema;
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -31,8 +32,8 @@ const userSchema = new mongoose.Schema({
   },
   status: {
     type: Number,
-    default:1
+    default: 1,
   },
   ...baseModel,
-})
-module.exports = mongoose.model("User", userSchema)
+});
+module.exports = mongoose.model("User", userSchema);

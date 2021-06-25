@@ -1,6 +1,6 @@
 
 const {User} = require("../model")
-const {jwtSecret} = require("../config")
+const {jwtSecret,tokenTimeOut} = require("../config")
 const jwt = require("../utils/jwt")
 // 用户注册
 exports.register = async (req,res,next)=>{
@@ -28,7 +28,7 @@ exports.login = async (req,res,next)=>{
     user = user.toJSON()
     const token = await jwt.sign({
       userId:_id
-    },jwtSecret,{ expiresIn:30})
+    },jwtSecret,{ expiresIn:tokenTimeOut})
     res.status(200).json({
       code:0,
       msg:"登录成功",

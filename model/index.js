@@ -1,10 +1,12 @@
 const mongoose = require("mongoose")
 const { dbUrl } = require("../config")
 const User = require("./user")
-
+const Categorys = require("./category")
+const Articles = require("./article")
+const Tags = require("./tags")
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useFindAndModify: false
 })
 
 const db = mongoose.connection
@@ -17,4 +19,7 @@ db.once("open", () => {
 
 module.exports = {
   User,
+  Tags,
+  Articles,
+  Categorys,
 }

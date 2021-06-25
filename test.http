@@ -1,6 +1,6 @@
 @url=http://localhost:5050/admin
 @json=Content-Type: application/json
-@token=Authorization: Bearea eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGMzNjllYzI5OTc2MWIxN2FmYzdmY2EiLCJpYXQiOjE2MjM5MDE1MDIsImV4cCI6MTYyMzkwMTUzMn0.lz1WIs__xH1atKTMvmg2HcLMNV1_X97zFWwBSz0btrA
+@token=Authorization: Bearea eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGMzNjllYzI5OTc2MWIxN2FmYzdmY2EiLCJpYXQiOjE2MjQ0MzQ4NTcsImV4cCI6MTYyNTAzOTY1N30.1g-03vxlrz6ERRRF9Oj_N_tBU3Il_jrYyZtC-UqjdmM
 
 ###
 get {{url}} HTTP/1.1
@@ -26,5 +26,43 @@ POST {{url}}/login HTTP/1.1
 
 ###
 get {{url}}/users HTTP/1.1
+{{json}}
+{{token}}
+
+
+
+###
+post {{url}}/article HTTP/1.1
+{{json}}
+{{token}}
+
+{
+  "title": "11-11-11",
+  "desc": "11-11-11",
+  "content": "11-11-11"
+}
+
+###
+get {{url}}/article/60d30e9adc4ed3a4a3c97fa9 HTTP/1.1
+{{json}}
+{{token}}
+
+{
+  "page":1,
+  "size":5,
+  "author":"60c369ec299761b17afc7fca"
+}
+
+###
+put {{url}}/article/60d30e75dc4ed3a4a3c97fa4 HTTP/1.1
+{{json}}
+{{token}}
+
+{
+  "title":"我是修改44"
+}
+
+###
+delete {{url}}/article/60d30eb9dc4ed3a4a3c97fac HTTP/1.1
 {{json}}
 {{token}}

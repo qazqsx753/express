@@ -1,7 +1,6 @@
 
 const express = require("express")
 const userController = require("../controller/user")
-const { User } = require("../model")
 const uservalidate = require("../validator/user")
 const auth = require("../middleware/auth")
 const router = express.Router()
