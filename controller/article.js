@@ -1,4 +1,5 @@
 const { Articles, User } = require("../model");
+const { successStatus } = require("../middleware/common");
 // 创建文章
 exports.creatArticles = async (req, res, next) => {
   try {
@@ -6,11 +7,7 @@ exports.creatArticles = async (req, res, next) => {
     article.author = req.user._id;
     article.populate("author").execPopulate();
     await article.save();
-    res.status(200).json({
-      code: 0,
-      msg: "创建成功",
-      data: article,
-    });
+    successStatus(res, { data: article });
   } catch (err) {
     next(err);
   }
@@ -19,13 +16,12 @@ exports.creatArticles = async (req, res, next) => {
 //编辑文章
 exports.updateArticles = async (req, res, next) => {
   try {
-    const article = req.body
-    const data =  await Articles.findByIdAndUpdate(req.params.id,article).exec()
-    res.status(200).json({
-      code: 0,
-      msg: "编辑成功",
-      data:data
-    });
+    const article = req.body;
+    const data = await Articles.findByIdAndUpdate(
+      req.params.id,
+      article
+    ).exec();
+    successStatus(res, { data: data });
   } catch (err) {
     next(err);
   }
@@ -37,11 +33,7 @@ exports.getArticlesOne = async (req, res, next) => {
     console.log(req.params);
     const id = req.params.id;
     const Article = await Articles.findById(id).populate("author");
-    res.status(200).json({
-      code: 0,
-      msg: "请求成功",
-      data: Article,
-    });
+    successStatus(res, { data: Article });
   } catch (err) {
     next(err);
   }
@@ -63,12 +55,10 @@ exports.getArticlesList = async (req, res, next) => {
       .skip(skip)
       .limit(+size)
       .sort({
-          createAt:-1
+        createAt: -1,
       })
       .populate("author");
-    res.status(200).json({
-      code: 0,
-      msg: "获取成功",
+    successStatus(res, {
       data: {
         list: articleList,
         count,
@@ -80,14 +70,11 @@ exports.getArticlesList = async (req, res, next) => {
 };
 
 // 删除文章
-exports.deleteArticle= async (req,res,next)=>{
-    try{
-       await Articles.findByIdAndDelete(req.params.id)
-       res.status(200).json({
-        code: 0,
-        msg: "删除成功",
-      });
-    }catch(err){
-        next(err)
-    }
-}
+exports.deleteArticle = async (req, res, next) => {
+  try {
+    await Articles.findByIdAndDelete(req.params.id);
+    successStatus(res, { msg: "删除成功" });
+  } catch (err) {
+    next(err);
+  }
+};

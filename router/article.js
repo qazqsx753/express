@@ -17,7 +17,7 @@ router.put(
 router.get(
   "/:id",
   auth,
-  articleValidate.getArticle,
+  articleValidate.deleteArticle,
   articleController.getArticlesOne
 );
 //获取文章列表
