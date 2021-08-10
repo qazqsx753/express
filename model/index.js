@@ -6,7 +6,8 @@ const Articles = require("./article")
 const Tags = require("./tags")
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
-  useFindAndModify: false
+  useFindAndModify: false,
+  useUnifiedTopology:true
 })
 
 const db = mongoose.connection

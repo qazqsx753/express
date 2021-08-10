@@ -2,6 +2,7 @@
 const {User} = require("../model")
 const {jwtSecret,tokenTimeOut} = require("../config")
 const jwt = require("../utils/jwt")
+const { successStatus } = require("../middleware/common");
 // 用户注册
 exports.register = async (req,res,next)=>{
   try{
@@ -51,6 +52,30 @@ exports.getuser = async (req,res,next)=>{
       msg:"请求成功",
       data:req.user
     })
+  }catch(err){
+    next(err)
+  }
+}
+
+exports.getAllUser = async (req,res,next) => {
+  try{
+    const { page = 1, size = 10 } = req.body;
+    const skip = (page - 1) * size;
+    const count = await User.countDocuments();
+    const userList = await User.find()
+      .skip(skip)
+      .limit(+size)
+      .sort({
+        createAt: -1,
+      })
+    successStatus(res, {
+      data: {
+        list: userList,
+        count,
+        page:page,
+        size:size
+      },
+    });
   }catch(err){
     next(err)
   }

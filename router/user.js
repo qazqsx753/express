@@ -10,7 +10,8 @@ router.post("/login", uservalidate.login,userController.login)
 router.post("/users", uservalidate.register, userController.register)
 //获取用户
 router.get("/users",auth,userController.getuser)
-
+//获取所有用户
+router.get("/allusers",userController.getAllUser)
 //更新用户
 router.put("/users", async (req, res, next) => {
   res.send("Holle register")
